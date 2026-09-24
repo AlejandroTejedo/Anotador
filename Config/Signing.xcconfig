@@ -1,0 +1,14 @@
+// Firma de código.
+//
+// El repositorio no lleva ningún Team de Apple. Para compilar en tu Mac:
+//   cp Config/Local.xcconfig.example Config/Local.xcconfig
+// y pon tu Team ID (Xcode → Settings → Accounts). Local.xcconfig está en .gitignore.
+//
+// Sin Local.xcconfig se firma ad hoc ("Sign to Run Locally"), suficiente para
+// compilar y pasar los tests, también en CI.
+
+DEVELOPMENT_TEAM =
+CODE_SIGN_IDENTITY = -
+ANOTADOR_BUNDLE_PREFIX = com.atejedo
+
+#include? "Local.xcconfig"

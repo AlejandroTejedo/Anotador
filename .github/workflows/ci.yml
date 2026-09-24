@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Compilar y tests
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Versión de Xcode
+        run: xcodebuild -version
+
+      - name: Traducciones completas
+        run: python3 scripts/check-strings.py en
+
+      # Sin Config/Local.xcconfig el proyecto se firma ad hoc: no hacen falta certificados.
+      - name: Tests
+        run: |
+          set -o pipefail
+          mkdir -p build
+          xcodebuild test \
+            -scheme Anotador \
+            -destination 'platform=macOS' \
+            -derivedDataPath build/DerivedData \
+            -resultBundlePath build/Tests.xcresult \
+            | tee build/xcodebuild.log | grep -E '^(Test case|\*\*|.*error:)' || true
+          grep -q '\*\* TEST SUCCEEDED \*\*' build/xcodebuild.log
+
+      - name: Guardar resultados si falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            build/Tests.xcresult
+            build/xcodebuild.log
+          retention-days: 7

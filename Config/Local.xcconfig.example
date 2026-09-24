@@ -1,0 +1,9 @@
+// Copia este archivo a Config/Local.xcconfig (ignorado por git).
+
+// Tu Team ID de Apple (10 caracteres).
+DEVELOPMENT_TEAM = ABCDE12345
+
+CODE_SIGN_IDENTITY = Apple Development
+
+// Si firmas con tu propio Team, usa un prefijo propio: los bundle IDs son únicos por Team.
+ANOTADOR_BUNDLE_PREFIX = com.tunombre

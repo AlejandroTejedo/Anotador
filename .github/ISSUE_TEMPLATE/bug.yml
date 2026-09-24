@@ -1,0 +1,59 @@
+name: Bug
+description: Algo no funciona como debería
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por avisar. **No pegues transcripciones reales, API keys ni datos de otras personas.**
+        Si el problema es de seguridad, sigue [SECURITY.md](../blob/main/SECURITY.md) en lugar de abrir un issue.
+  - type: textarea
+    id: what
+    attributes:
+      label: Qué pasa
+      description: Qué esperabas y qué ocurrió.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Cómo reproducirlo
+      placeholder: |
+        1. Nueva reunión en modo Reunión virtual
+        2. Transcribir 2 minutos en Zoom
+        3. Detener y redactar
+    validations:
+      required: true
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Proveedor de notas
+      options:
+        - Grok (CLI)
+        - ChatGPT (API)
+        - Grok (API xAI)
+        - Claude (API)
+        - Ollama
+        - LM Studio
+        - Otro compatible con OpenAI
+        - No aplica (fallo de captura o transcripción)
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Modo de captura
+      options: [Reunión virtual, Presencial, Subir audio, No aplica]
+  - type: input
+    id: macos
+    attributes:
+      label: Versión de macOS y Mac
+      placeholder: macOS 26.1, MacBook Air M3
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Mensaje de error
+      description: El texto del aviso amarillo, si lo hay.
+      render: text

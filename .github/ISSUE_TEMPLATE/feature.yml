@@ -1,0 +1,21 @@
+name: Idea
+description: Propón una mejora o un proveedor nuevo
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qué problema resuelve
+      description: Cuéntalo desde la reunión, no desde la solución.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Qué propones
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacidad
+      options:
+        - label: La idea mantiene el audio y la transcripción en el Mac, o lo deja claro al usuario.

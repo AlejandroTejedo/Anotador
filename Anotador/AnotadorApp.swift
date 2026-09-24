@@ -4,7 +4,18 @@ import SwiftUI
 @main
 struct AnotadorApp: App {
     @State private var appModel = AppModel()
-    private let container = try! ModelContainer(for: Meeting.self)
+    private let container = Self.makeContainer()
+
+    private static func makeContainer() -> ModelContainer {
+        #if DEBUG
+        if DemoData.isEnabled { return DemoData.makeContainer() }
+        #endif
+        do {
+            return try ModelContainer(for: Meeting.self)
+        } catch {
+            fatalError("No se pudo abrir la base de datos de Anotador: \(error)")
+        }
+    }
 
     /// `-forceAppearance light|dark` for screenshots and design review (DEBUG only).
     private static var forcedColorScheme: ColorScheme? {

@@ -6,7 +6,13 @@ import UniformTypeIdentifiers
 struct MeetingDetailView: View {
     @Bindable var meeting: Meeting
     @Environment(AppModel.self) private var appModel
-    @State private var tab: MeetingSection = .summary
+    @State private var tab: MeetingSection = {
+        #if DEBUG
+        return DemoData.initialTab ?? .summary
+        #else
+        return .summary
+        #endif
+    }()
     @State private var importing = false
     @State private var exporting = false
     @State private var exportDocument = MarkdownFile()
