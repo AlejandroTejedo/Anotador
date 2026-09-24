@@ -49,7 +49,7 @@ enum GrokClient {
             return notes
         }
         if result.timedOut {
-            throw AnotadorError.summaryFailed("Grok tardó demasiado. Pulsa Reintentar; la transcripción ya está guardada.")
+            throw AnotadorError.summaryFailed(String(localized: "Grok tardó demasiado. Pulsa Reintentar; la transcripción ya está guardada."))
         }
         guard result.status == 0 else {
             throw AnotadorError.summaryFailed(failureMessage(stdout: result.stdout, stderr: result.stderr))
@@ -100,11 +100,11 @@ enum GrokClient {
 
     static func failureMessage(stdout: String, stderr: String) -> String {
         if isAuthFailure(stdout: stdout, stderr: stderr) {
-            return "Grok no tiene sesión. En el terminal: `grok login`. O elige otro proveedor en Ajustes."
+            return String(localized: "Grok no tiene sesión. En el terminal: `grok login`. O elige otro proveedor en Ajustes.")
         }
         let detail = (stderr.isEmpty ? stdout : stderr).trimmingCharacters(in: .whitespacesAndNewlines)
         if isMaxTurnsFailure(detail) {
-            return "Grok se quedó a medias redactando. Pulsa Reintentar; la transcripción ya está guardada."
+            return String(localized: "Grok se quedó a medias redactando. Pulsa Reintentar; la transcripción ya está guardada.")
         }
         return detail.isEmpty ? "Grok no pudo redactar las notas." : String(detail.prefix(600))
     }

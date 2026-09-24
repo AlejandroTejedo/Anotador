@@ -74,13 +74,13 @@ enum LLMClient {
                 let json = try await post(url: url, body: body, headers: bearer(config), config: config)
                 guard let choice = (json["choices"] as? [[String: Any]])?.first,
                       let message = choice["message"] as? [String: Any] else {
-                    throw AnotadorError.summaryFailed("\(config.provider.shortName) devolvió una respuesta sin contenido.")
+                    throw AnotadorError.summaryFailed(String(localized: "\(config.provider.shortName) devolvió una respuesta sin contenido."))
                 }
                 if let refusal = message["refusal"] as? String, !refusal.isEmpty {
-                    throw AnotadorError.summaryFailed("\(config.provider.shortName) rechazó la petición: \(refusal)")
+                    throw AnotadorError.summaryFailed(String(localized: "\(config.provider.shortName) rechazó la petición: \(refusal)"))
                 }
                 if choice["finish_reason"] as? String == "length" {
-                    throw AnotadorError.summaryFailed("La respuesta de \(config.provider.shortName) se cortó por longitud. Prueba un modelo con más contexto.")
+                    throw AnotadorError.summaryFailed(String(localized: "La respuesta de \(config.provider.shortName) se cortó por longitud. Prueba un modelo con más contexto."))
                 }
                 return (message["content"] as? String) ?? ""
             } catch let error as HTTPFailure where error.isFormatRejection && mode != .none {
@@ -88,7 +88,7 @@ enum LLMClient {
                 continue
             }
         }
-        throw lastError ?? AnotadorError.summaryFailed("\(config.provider.shortName) no pudo redactar las notas.")
+        throw lastError ?? AnotadorError.summaryFailed(String(localized: "\(config.provider.shortName) no pudo redactar las notas."))
     }
 
     static func anthropicBody(prompt: String, model: String, structured: Bool) -> [String: Any] {
@@ -121,9 +121,9 @@ enum LLMClient {
                 )
                 switch json["stop_reason"] as? String {
                 case "refusal":
-                    throw AnotadorError.summaryFailed("Claude rechazó redactar estas notas.")
+                    throw AnotadorError.summaryFailed(String(localized: "Claude rechazó redactar estas notas."))
                 case "max_tokens":
-                    throw AnotadorError.summaryFailed("La respuesta de Claude se cortó por longitud. Pulsa Reintentar.")
+                    throw AnotadorError.summaryFailed(String(localized: "La respuesta de Claude se cortó por longitud. Pulsa Reintentar."))
                 default:
                     break
                 }
@@ -137,7 +137,7 @@ enum LLMClient {
                 continue
             }
         }
-        throw lastError ?? AnotadorError.summaryFailed("Claude no pudo redactar las notas.")
+        throw lastError ?? AnotadorError.summaryFailed(String(localized: "Claude no pudo redactar las notas."))
     }
 
     /// Rough token estimate (≈3 chars/token for Spanish) plus room for the answer.
@@ -161,7 +161,7 @@ enum LLMClient {
         ]
         let json = try await post(url: url, body: body, headers: [:], config: config)
         guard let message = json["message"] as? [String: Any], let content = message["content"] as? String else {
-            throw AnotadorError.summaryFailed("Ollama devolvió una respuesta sin contenido.")
+            throw AnotadorError.summaryFailed(String(localized: "Ollama devolvió una respuesta sin contenido."))
         }
         return content
     }
@@ -217,16 +217,16 @@ enum LLMClient {
             let name = provider.shortName
             switch status {
             case 401, 403:
-                return "\(name) rechazó la API key (\(status)). Revísala en Ajustes → Modelo."
+                return String(localized: "\(name) rechazó la API key (\(status)). Revísala en Ajustes → Modelo.")
             case 404:
-                return "\(name) no encuentra el modelo “\(model)”. Elige otro en Ajustes → Modelo."
+                return String(localized: "\(name) no encuentra el modelo “\(model)”. Elige otro en Ajustes → Modelo.")
             case 429:
-                return "\(name) ha limitado las peticiones o no te queda saldo (429). Espera un poco o revisa tu cuenta."
+                return String(localized: "\(name) ha limitado las peticiones o no te queda saldo (429). Espera un poco o revisa tu cuenta.")
             case 500...599:
-                return "\(name) tiene problemas ahora mismo (\(status)). Pulsa Reintentar en un rato."
+                return String(localized: "\(name) tiene problemas ahora mismo (\(status)). Pulsa Reintentar en un rato.")
             default:
                 let detail = message.isEmpty ? "" : ": \(message.prefix(400))"
-                return "\(name) devolvió un error \(status)\(detail)"
+                return String(localized: "\(name) devolvió un error \(status)\(detail)")
             }
         }
     }
@@ -270,7 +270,7 @@ enum LLMClient {
             )
         }
         guard let json else {
-            throw AnotadorError.summaryFailed("\(config.provider.shortName) devolvió algo que no es JSON.")
+            throw AnotadorError.summaryFailed(String(localized: "\(config.provider.shortName) devolvió algo que no es JSON."))
         }
         return json
     }
@@ -288,17 +288,18 @@ enum LLMClient {
         switch error.code {
         case .cannotConnectToHost, .cannotFindHost, .networkConnectionLost:
             if config.provider.isLocal {
-                return "No puedo conectar con \(name) en \(config.endpointBase?.absoluteString ?? "local"). ¿Está abierto y con el servidor activo?"
+                let address = config.endpointBase?.absoluteString ?? "localhost"
+                return String(localized: "No puedo conectar con \(name) en \(address). ¿Está abierto y con el servidor activo?")
             }
-            return "No puedo conectar con \(name). Revisa la conexión o la URL."
+            return String(localized: "No puedo conectar con \(name). Revisa la conexión o la URL.")
         case .notConnectedToInternet:
-            return "Sin conexión a internet. La transcripción está guardada; pulsa Reintentar cuando vuelva la red."
+            return String(localized: "Sin conexión a internet. La transcripción está guardada; pulsa Reintentar cuando vuelva la red.")
         case .timedOut:
-            return "\(name) tardó demasiado en responder. Pulsa Reintentar."
+            return String(localized: "\(name) tardó demasiado en responder. Pulsa Reintentar.")
         case .appTransportSecurityRequiresSecureConnection:
-            return "macOS bloquea http:// a ese servidor. Usa https://, localhost o una IP."
+            return String(localized: "macOS bloquea http:// a ese servidor. Usa https://, localhost o una IP.")
         default:
-            return "\(name): \(error.localizedDescription)"
+            return String(localized: "\(name): \(error.localizedDescription)")
         }
     }
 }

@@ -33,11 +33,12 @@ extension Meeting {
     /// replace it. A user-typed "Reunión con Ana" is left alone.
     var hasPlaceholderTitle: Bool {
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty || trimmed == "Nueva reunión" || trimmed == Self.defaultTitle(now: createdAt)
+        let placeholders = ["Nueva reunión", String(localized: "Nueva reunión"), Self.defaultTitle(now: createdAt), "Reunión \(createdAt.formatted(date: .abbreviated, time: .shortened))"]
+        return trimmed.isEmpty || placeholders.contains(trimmed)
     }
 
     static func defaultTitle(now: Date = .now) -> String {
-        "Reunión \(now.formatted(date: .abbreviated, time: .shortened))"
+        String(localized: "Reunión \(now.formatted(date: .abbreviated, time: .shortened))")
     }
 }
 

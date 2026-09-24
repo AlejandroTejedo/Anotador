@@ -197,7 +197,7 @@ final class Meeting {
 
     init(
         id: UUID = UUID(),
-        title: String = "Nueva reunión",
+        title: String = String(localized: "Nueva reunión"),
         createdAt: Date = .now,
         notes: String = "",
         localeIdentifier: String = Locale.current.identifier
@@ -294,27 +294,27 @@ enum AnotadorError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .microphoneDenied:
-            "Anotador necesita el micrófono para capturar tu voz."
+            String(localized: "Anotador necesita el micrófono para capturar tu voz.")
         case .speechDenied:
-            "Habilita reconocimiento de voz para transcribir en el Mac."
+            String(localized: "Habilita reconocimiento de voz para transcribir en el Mac.")
         case .screenDenied:
-            "Para oír a los demás en Zoom, Meet o Teams, concede grabación de pantalla / audio del sistema."
+            String(localized: "Para oír a los demás en Zoom, Meet o Teams, concede grabación de pantalla / audio del sistema.")
         case .grokMissing:
-            "No encuentro el CLI de Grok. Instálalo e inicia sesión con `grok login`, o elige otro proveedor en Ajustes."
+            String(localized: "No encuentro el CLI de Grok. Instálalo e inicia sesión con `grok login`, o elige otro proveedor en Ajustes.")
         case .summaryFailed(let message):
             message
         case .missingAPIKey(let provider):
-            "Falta la API key de \(provider). Añádela en Ajustes → Modelo."
+            String(localized: "Falta la API key de \(provider). Añádela en Ajustes → Modelo.")
         case .missingModel(let provider):
-            "Elige un modelo para \(provider) en Ajustes → Modelo."
+            String(localized: "Elige un modelo para \(provider) en Ajustes → Modelo.")
         case .invalidEndpoint:
-            "La URL del servidor no es válida. Revísala en Ajustes → Modelo."
+            String(localized: "La URL del servidor no es válida. Revísala en Ajustes → Modelo.")
         case .noSpeech:
-            "No hay suficiente conversación para redactar notas. Habla al menos un minuto."
+            String(localized: "No hay suficiente conversación para redactar notas. Habla al menos un minuto.")
         case .conversionFailed:
-            "No pude convertir el audio para transcribirlo."
+            String(localized: "No pude convertir el audio para transcribirlo.")
         case .unsupportedLocale:
-            "Este idioma no está disponible para transcripción en el dispositivo."
+            String(localized: "Este idioma no está disponible para transcripción en el dispositivo.")
         }
     }
 }

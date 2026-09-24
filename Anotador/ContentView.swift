@@ -63,7 +63,17 @@ struct ContentView: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
+        .onChange(of: appModel.requestedSelection) { _, id in
+            guard let id else { return }
+            search = ""
+            selectedID = id
+            appModel.requestedSelection = nil
+        }
         .onAppear {
+            if let id = appModel.requestedSelection {
+                selectedID = id
+                appModel.requestedSelection = nil
+            }
             if selectedID == nil {
                 selectedID = meetings.first?.id
             }
@@ -108,7 +118,9 @@ struct EmptyMeetingsView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label("Nada se queda en el aire", systemImage: "waveform")
+            Label("Nada se queda en el aire", systemImage: "waveform.badge.mic")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(Palette.terracotta)
         } description: {
             Text("Captura Zoom, Meet, Teams o una sala. Anotador transcribe en el Mac y el modelo que elijas redacta puntos clave, decisiones y acciones.")
         } actions: {

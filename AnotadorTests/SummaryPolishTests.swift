@@ -62,3 +62,17 @@ struct SummaryPolishTests {
         #expect(grouped.count == AIProvider.allCases.count)
     }
 }
+
+struct AudioLevelTests {
+    @Test func silenceIsZeroAndFullScaleIsOne() {
+        #expect(AudioLevel.normalized([Float](repeating: 0, count: 256)) == 0)
+        #expect(AudioLevel.normalized([Float](repeating: 1, count: 256)) == 1)
+        #expect(AudioLevel.normalized([Float]()) == 0)
+    }
+
+    @Test func quietSpeechLandsMidScale() {
+        // -30 dBFS ≈ 0.0316 RMS → halfway on a -60…0 scale.
+        let level = AudioLevel.normalized([Float](repeating: 0.0316, count: 512))
+        #expect(abs(level - 0.5) < 0.02)
+    }
+}

@@ -9,8 +9,8 @@ enum SpeakerLane: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var name: String {
         switch self {
-        case .you: "Tú"
-        case .others: "Participantes"
+        case .you: String(localized: "Tú")
+        case .others: String(localized: "Participantes")
         }
     }
 
@@ -39,12 +39,12 @@ enum MeetingPhase: String, Codable, CaseIterable, Sendable {
 
     var name: String {
         switch self {
-        case .draft: "Borrador"
-        case .recording: "En vivo"
-        case .processing: "Cerrando"
-        case .summarizing: "Redactando"
-        case .ready: "Lista"
-        case .failed: "Revisar"
+        case .draft: String(localized: "Borrador")
+        case .recording: String(localized: "En vivo")
+        case .processing: String(localized: "Cerrando")
+        case .summarizing: String(localized: "Redactando")
+        case .ready: String(localized: "Lista")
+        case .failed: String(localized: "Revisar")
         }
     }
 
@@ -75,13 +75,13 @@ enum SummaryStyle: String, CaseIterable, Identifiable, Codable {
 
     var name: String {
         switch self {
-        case .auto: "Auto"
-        case .standup: "Standup"
-        case .oneOnOne: "1:1"
-        case .sales: "Ventas"
-        case .product: "Producto"
-        case .interview: "Entrevista"
-        case .custom: "Personalizado"
+        case .auto: String(localized: "Auto")
+        case .standup: String(localized: "Standup")
+        case .oneOnOne: String(localized: "1:1")
+        case .sales: String(localized: "Ventas")
+        case .product: String(localized: "Producto")
+        case .interview: String(localized: "Entrevista")
+        case .custom: String(localized: "Personalizado")
         }
     }
 
@@ -113,15 +113,15 @@ enum CaptureMode: String, CaseIterable, Identifiable {
 
     var name: String {
         switch self {
-        case .meeting: "Reunión virtual"
-        case .inPerson: "Presencial"
+        case .meeting: String(localized: "Reunión virtual")
+        case .inPerson: String(localized: "Presencial")
         }
     }
 
     var subtitle: String {
         switch self {
-        case .meeting: "Micrófono + audio del sistema (Zoom, Meet, Teams, FaceTime)"
-        case .inPerson: "Solo micrófono, para una sala o una llamada en altavoz"
+        case .meeting: String(localized: "Micrófono + audio del sistema (Zoom, Meet, Teams, FaceTime)")
+        case .inPerson: String(localized: "Solo micrófono, para una sala o una llamada en altavoz")
         }
     }
 
@@ -143,8 +143,8 @@ enum MeetingSection: String, CaseIterable, Identifiable {
 
     var name: String {
         switch self {
-        case .summary: "Resumen"
-        case .transcript: "Transcripción"
+        case .summary: String(localized: "Resumen")
+        case .transcript: String(localized: "Transcripción")
         }
     }
 }

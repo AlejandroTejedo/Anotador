@@ -1,0 +1,77 @@
+{
+  "sourceLanguage": "es",
+  "strings": {
+    "CFBundleDisplayName": {
+      "shouldTranslate": false
+    },
+    "NSAudioCaptureUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador captures system audio to transcribe the other people on Zoom, Meet, Teams or FaceTime."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador captura el audio del sistema para transcribir a las otras personas en Zoom, Meet, Teams o FaceTime."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador uses the microphone to transcribe your voice during the meeting."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador usa el micrófono para transcribir tu voz durante la reunión."
+          }
+        }
+      }
+    },
+    "NSScreenCaptureUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador needs screen capture to hear the meeting's system audio, not to record video."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador necesita captura de pantalla para oír el audio del sistema de la reunión, no para grabar el vídeo."
+          }
+        }
+      }
+    },
+    "NSSpeechRecognitionUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador transcribes the meeting on your Mac with Apple's speech recognition."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador transcribe la reunión en el Mac con el reconocimiento de voz de Apple."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

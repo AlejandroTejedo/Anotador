@@ -12,7 +12,7 @@ enum MeetingMarkdown {
         var parts: [String] = ["# \(title)", ""]
         parts.append("_\(createdAt.formatted(date: .long, time: .shortened))_")
         if duration > 0 {
-            parts.append("Duración: \(TranscriptLine.clock(duration))")
+            parts.append(String(localized: "Duración: \(TranscriptLine.clock(duration))"))
         }
         parts.append("")
 
@@ -22,13 +22,13 @@ enum MeetingMarkdown {
 
         let trimmedNotes = notes.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmedNotes.isEmpty {
-            parts.append("## Notas durante la reunión")
+            parts.append(String(localized: "## Notas durante la reunión"))
             parts.append(trimmedNotes)
             parts.append("")
         }
 
         if !lines.isEmpty {
-            parts.append("## Transcripción")
+            parts.append(String(localized: "## Transcripción"))
             parts.append(contentsOf: lines.map(\.markdownLine))
         }
 
@@ -36,15 +36,15 @@ enum MeetingMarkdown {
     }
 
     private static func append(_ document: MeetingNotes, to parts: inout [String]) {
-        parts.append("## En una frase")
+        parts.append(String(localized: "## En una frase"))
         parts.append(document.tldr)
         parts.append("")
-        parts.append("## Resumen")
+        parts.append(String(localized: "## Resumen"))
         parts.append(document.summary)
         parts.append("")
 
         if !document.keyPoints.isEmpty {
-            parts.append("## Puntos clave")
+            parts.append(String(localized: "## Puntos clave"))
             for point in document.keyPoints {
                 var line = "- \(point.point)"
                 if let timestamp = point.timestamp, !timestamp.isEmpty {
@@ -58,20 +58,20 @@ enum MeetingMarkdown {
             parts.append("")
         }
 
-        appendBullets("Decisiones", document.decisions, to: &parts)
+        appendBullets(String(localized: "Decisiones"), document.decisions, to: &parts)
         if !document.actionItems.isEmpty {
-            parts.append("## Acciones")
+            parts.append(String(localized: "## Acciones"))
             parts.append(contentsOf: document.actionItems.map(\.markdownLine))
             parts.append("")
         }
-        appendBullets("Preguntas abiertas", document.openQuestions, to: &parts)
-        appendBullets("Riesgos", document.risks, to: &parts)
-        appendBullets("Próximos pasos", document.nextSteps, to: &parts)
+        appendBullets(String(localized: "Preguntas abiertas"), document.openQuestions, to: &parts)
+        appendBullets(String(localized: "Riesgos"), document.risks, to: &parts)
+        appendBullets(String(localized: "Próximos pasos"), document.nextSteps, to: &parts)
     }
 
     private static func appendBullets(_ title: String, _ items: [String], to parts: inout [String]) {
         guard !items.isEmpty else { return }
-        parts.append("## \(title)")
+        parts.append("## " + title)
         items.forEach { parts.append("- \($0)") }
         parts.append("")
     }
@@ -99,7 +99,7 @@ extension Meeting {
             .components(separatedBy: CharacterSet(charactersIn: "/:\\?%*|\"<>"))
             .joined(separator: "-")
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        return (cleaned.isEmpty ? "Reunión" : cleaned) + ".md"
+        return (cleaned.isEmpty ? String(localized: "Reunión") : cleaned) + ".md"
     }
 
     func markdownExport() -> String {

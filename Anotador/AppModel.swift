@@ -17,7 +17,11 @@ final class AppModel {
     var statusByMeeting: [UUID: String] = [:]
     /// Non-fatal issues during capture (e.g. system audio dropped).
     var liveWarning = ""
+    /// Smoothed 0…1 input level per lane while recording.
+    var levels: [SpeakerLane: Float] = [:]
     private(set) var activeMeeting: Meeting?
+    /// Set from outside the main window (menu bar) to select a meeting there.
+    var requestedSelection: UUID?
     private(set) var summarizingIDs: Set<UUID> = []
 
     @ObservationIgnored var modelContext: ModelContext?
@@ -68,8 +72,8 @@ final class AppModel {
             } else {
                 meeting.phase = .failed
                 meeting.grokError = meeting.lines.isEmpty
-                    ? "La sesión se interrumpió antes de guardar la transcripción."
-                    : "La sesión se interrumpió. La transcripción guardada está a salvo: pulsa Reintentar para redactar las notas."
+                    ? String(localized: "La sesión se interrumpió antes de guardar la transcripción.")
+                    : String(localized: "La sesión se interrumpió. La transcripción guardada está a salvo: pulsa Reintentar para redactar las notas.")
             }
         }
         try? modelContext.save()
@@ -94,7 +98,7 @@ final class AppModel {
         guard !isRecording, !installingAssets else { return }
         meeting.grokError = ""
         liveWarning = ""
-        statusByMeeting[meeting.id] = "Preparando transcripción on-device…"
+        statusByMeeting[meeting.id] = String(localized: "Preparando transcripción on-device…")
         installingAssets = true
 
         let previous = meeting.lines
@@ -129,8 +133,8 @@ final class AppModel {
             installingAssets = false
             lastPersist = Date()
             statusByMeeting[meeting.id] = meeting.captureMode.capturesSystemAudio
-                ? "Capturando micrófono y audio del sistema"
-                : "Capturando micrófono"
+                ? String(localized: "Capturando micrófono y audio del sistema")
+                : String(localized: "Capturando micrófono")
             startClock()
         } catch {
             installingAssets = false
@@ -152,7 +156,7 @@ final class AppModel {
         isRecording = false
         clockTask?.cancel()
         clockTask = nil
-        statusByMeeting[meeting.id] = "Cerrando transcripción…"
+        statusByMeeting[meeting.id] = String(localized: "Cerrando transcripción…")
         meeting.phase = .processing
         meeting.endedAt = Date()
         meeting.lines = liveLines
@@ -163,6 +167,7 @@ final class AppModel {
         // Final results that arrived while finishing.
         meeting.lines = liveLines
         volatile = [:]
+        levels = [:]
         activeMeeting = nil
         liveWarning = ""
         try? modelContext?.save()
@@ -180,7 +185,7 @@ final class AppModel {
         let config = ProviderSettings.current()
         meeting.phase = .summarizing
         meeting.grokError = ""
-        statusByMeeting[meeting.id] = "\(config.provider.shortName) está redactando las notas…"
+        statusByMeeting[meeting.id] = String(localized: "\(config.provider.shortName) está redactando las notas…")
         try? modelContext?.save()
 
         do {
@@ -208,7 +213,7 @@ final class AppModel {
     func importAudio(url: URL, into meeting: Meeting) async {
         guard !isActive(meeting), !meeting.phase.isBusy else { return }
         meeting.grokError = ""
-        statusByMeeting[meeting.id] = "Transcribiendo archivo en el Mac…"
+        statusByMeeting[meeting.id] = String(localized: "Transcribiendo archivo en el Mac…")
         meeting.phase = .processing
         try? modelContext?.save()
 
@@ -283,6 +288,11 @@ final class AppModel {
             apply(update)
         case .warning(let message):
             liveWarning = message
+        case .level(let lane, let value):
+            guard isRecording else { return }
+            // Fast attack, slow release: reads like a real meter.
+            let previous = levels[lane] ?? 0
+            levels[lane] = value > previous ? value : previous * 0.6 + value * 0.4
         }
     }
 

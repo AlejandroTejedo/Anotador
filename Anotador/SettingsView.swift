@@ -136,19 +136,19 @@ struct ProviderDetailSection: View {
         Section(provider.shortName) {
             if provider == .grokCLI {
                 LabeledContent("Binario") {
-                    Text(GrokClient.resolveBinary()?.path ?? "No encontrado. Instala Grok CLI y ejecuta `grok login`.")
+                    Text(GrokClient.resolveBinary()?.path ?? String(localized: "No encontrado. Instala Grok CLI y ejecuta `grok login`."))
                         .font(.caption)
                         .textSelection(.enabled)
                 }
             }
 
             if provider.editableBaseURL {
-                TextField("URL del servidor", text: $baseURL, prompt: Text(provider.defaultBaseURL))
+                TextField("URL del servidor", text: $baseURL, prompt: Text(verbatim: provider.defaultBaseURL))
                     .autocorrectionDisabled()
             }
 
             if provider.acceptsAPIKey {
-                SecureField(provider.requiresAPIKey ? "API key" : "API key (opcional)", text: $apiKey)
+                SecureField(provider.requiresAPIKey ? LocalizedStringKey("API key") : LocalizedStringKey("API key (opcional)"), text: $apiKey)
                     .onSubmit(saveKey)
                     .onChange(of: apiKey) { saveKey() }
                 if let url = provider.keyHelpURL {
@@ -159,7 +159,7 @@ struct ProviderDetailSection: View {
 
             if provider.usesModel {
                 HStack {
-                    TextField("Modelo", text: $model, prompt: Text(provider.defaultModel.isEmpty ? "nombre-del-modelo" : provider.defaultModel))
+                    TextField("Modelo", text: $model, prompt: Text(verbatim: provider.defaultModel.isEmpty ? "model-name" : provider.defaultModel))
                         .autocorrectionDisabled()
                     if !models.isEmpty {
                         Menu("Elegir") {
@@ -173,7 +173,7 @@ struct ProviderDetailSection: View {
             }
 
             HStack {
-                Button(provider.usesModel ? "Probar y cargar modelos" : "Comprobar") {
+                Button(provider.usesModel ? LocalizedStringKey("Probar y cargar modelos") : LocalizedStringKey("Comprobar")) {
                     Task { await test() }
                 }
                 .disabled(testState == .running)
@@ -211,7 +211,7 @@ struct ProviderDetailSection: View {
         if provider == .grokCLI {
             testState = GrokClient.resolveBinary() == nil
                 ? .failed(AnotadorError.grokMissing.errorDescription ?? "")
-                : .ok("Grok CLI encontrado")
+                : .ok(String(localized: "Grok CLI encontrado"))
             return
         }
         var probe = config
@@ -222,12 +222,12 @@ struct ProviderDetailSection: View {
             let found = try await LLMClient.listModels(config: probe)
             models = found
             if found.isEmpty {
-                testState = .ok("Conectado")
+                testState = .ok(String(localized: "Conectado"))
             } else if !model.isEmpty, !found.contains(model) {
-                testState = .failed("Conectado, pero “\(model)” no aparece en la lista. Elige uno.")
+                testState = .failed(String(localized: "Conectado, pero “\(model)” no aparece en la lista. Elige uno."))
             } else {
                 if model.isEmpty, let first = found.first { model = first }
-                testState = .ok("Conectado · \(found.count) modelos")
+                testState = .ok(String(localized: "Conectado · \(found.count) modelos"))
             }
         } catch {
             testState = .failed(AppModel.message(for: error))

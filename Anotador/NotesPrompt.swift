@@ -74,18 +74,18 @@ enum NotesPrompt {
             payload = String(payload[start...end])
         }
         guard !payload.isEmpty, let data = payload.data(using: .utf8) else {
-            throw AnotadorError.summaryFailed("\(providerName) devolvió una respuesta vacía.")
+            throw AnotadorError.summaryFailed(String(localized: "\(providerName) devolvió una respuesta vacía."))
         }
         do {
             let notes = try JSONDecoder().decode(MeetingNotes.self, from: data)
             guard !notes.isEmpty else {
-                throw AnotadorError.summaryFailed("\(providerName) devolvió unas notas vacías.")
+                throw AnotadorError.summaryFailed(String(localized: "\(providerName) devolvió unas notas vacías."))
             }
             return notes
         } catch let error as AnotadorError {
             throw error
         } catch {
-            throw AnotadorError.summaryFailed("No pude leer las notas que devolvió \(providerName).")
+            throw AnotadorError.summaryFailed(String(localized: "No pude leer las notas que devolvió \(providerName)."))
         }
     }
 }

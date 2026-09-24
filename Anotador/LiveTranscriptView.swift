@@ -22,7 +22,7 @@ struct LiveTranscriptView: View {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     if lines.isEmpty && pendingLines.isEmpty {
                         ContentUnavailableView(
-                            followsLive ? "Escuchando…" : "Sin transcripción",
+                            followsLive ? LocalizedStringKey("Escuchando…") : LocalizedStringKey("Sin transcripción"),
                             systemImage: followsLive ? "waveform" : "text.bubble",
                             description: Text("Tu micrófono aparece como Tú. El audio del sistema, como Participantes.")
                         )

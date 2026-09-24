@@ -1,0 +1,2542 @@
+{
+  "sourceLanguage": "es",
+  "strings": {
+    "## Acciones": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## Action items"
+          }
+        }
+      }
+    },
+    "## En una frase": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## In one sentence"
+          }
+        }
+      }
+    },
+    "## Notas durante la reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## Notes taken during the meeting"
+          }
+        }
+      }
+    },
+    "## Puntos clave": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## Key points"
+          }
+        }
+      }
+    },
+    "## Resumen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## Summary"
+          }
+        }
+      }
+    },
+    "## Transcripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "## Transcript"
+          }
+        }
+      }
+    },
+    "%@ devolvió algo que no es JSON.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ returned something that isn't JSON."
+          }
+        }
+      }
+    },
+    "%@ devolvió un error %lld%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ returned error %2$lld%3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ devolvió un error %2$lld%3$@"
+          }
+        }
+      }
+    },
+    "%@ devolvió una respuesta sin contenido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ returned an empty response."
+          }
+        }
+      }
+    },
+    "%@ devolvió una respuesta vacía.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ returned an empty response."
+          }
+        }
+      }
+    },
+    "%@ devolvió unas notas vacías.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ returned empty notes."
+          }
+        }
+      }
+    },
+    "%@ está redactando las notas…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ is writing the notes…"
+          }
+        }
+      }
+    },
+    "%@ ha limitado las peticiones o no te queda saldo (429). Espera un poco o revisa tu cuenta.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ is rate-limiting requests or your credit ran out (429). Wait a moment or check your account."
+          }
+        }
+      }
+    },
+    "%@ no encuentra el modelo “%@”. Elige otro en Ajustes → Modelo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ can't find the model “%2$@”. Pick another in Settings → Model."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ no encuentra el modelo “%2$@”. Elige otro en Ajustes → Modelo."
+          }
+        }
+      }
+    },
+    "%@ no pudo redactar las notas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ couldn't write the notes."
+          }
+        }
+      }
+    },
+    "%@ rechazó la API key (%lld). Revísala en Ajustes → Modelo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ rejected the API key (%2$lld). Check it in Settings → Model."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ rechazó la API key (%2$lld). Revísala en Ajustes → Modelo."
+          }
+        }
+      }
+    },
+    "%@ rechazó la petición: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ refused the request: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ rechazó la petición: %2$@"
+          }
+        }
+      }
+    },
+    "%@ tardó demasiado en responder. Pulsa Reintentar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ took too long to respond. Click Retry."
+          }
+        }
+      }
+    },
+    "%@ tiene problemas ahora mismo (%lld). Pulsa Reintentar en un rato.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ is having problems right now (%2$lld). Click Retry in a while."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ tiene problemas ahora mismo (%2$lld). Pulsa Reintentar en un rato."
+          }
+        }
+      }
+    },
+    "%@, %@, %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@, %2$@, %3$@"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "%@: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@: %2$@"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "%lld acciones": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld action item"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld action items"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld acción"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld acciones"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld decisiones": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld decision"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld decisions"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld decisión"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld decisiones"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld preguntas abiertas": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld open question"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld open questions"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pregunta abierta"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld preguntas abiertas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld riesgos": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld risk"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld risks"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld riesgo"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld riesgos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "1:1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1:1"
+          }
+        }
+      }
+    },
+    "API key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key"
+          }
+        }
+      }
+    },
+    "API key (opcional)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key (optional)"
+          }
+        }
+      }
+    },
+    "API key (pago por uso)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key (pay as you go)"
+          }
+        }
+      }
+    },
+    "Abre la reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens the meeting"
+          }
+        }
+      }
+    },
+    "Abrir Ajustes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        }
+      }
+    },
+    "Abrir Anotador": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Anotador"
+          }
+        }
+      }
+    },
+    "Abrir privacidad de captura de pantalla": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Screen Recording privacy settings"
+          }
+        }
+      }
+    },
+    "Acciones": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action items"
+          }
+        }
+      }
+    },
+    "Agenda y notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agenda & notes"
+          }
+        }
+      }
+    },
+    "Agenda, nombres, contexto…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agenda, names, context…"
+          }
+        }
+      }
+    },
+    "Ajustes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Ajustes → Modelo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings → Model"
+          }
+        }
+      }
+    },
+    "Al transcribir confirmas que las personas en la reunión lo saben y están de acuerdo. El audio y la transcripción se quedan en este Mac. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By transcribing you confirm that everyone in the meeting knows and agrees. Audio and transcript stay on this Mac. %@"
+          }
+        }
+      }
+    },
+    "Anotador": {
+      "shouldTranslate": false
+    },
+    "Anotador escucha tus reuniones, las transcribe en este Mac y deja por escrito decisiones, acciones y dudas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador listens to your meetings, transcribes them on this Mac and writes down decisions, action items and open questions."
+          }
+        }
+      }
+    },
+    "Anotador necesita el micrófono para capturar tu voz.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anotador needs the microphone to capture your voice."
+          }
+        }
+      }
+    },
+    "Antes de transcribir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before you transcribe"
+          }
+        }
+      }
+    },
+    "Atrás": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "Audio guardado": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved audio"
+          }
+        }
+      }
+    },
+    "Auto": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto"
+          }
+        }
+      }
+    },
+    "Avisa siempre a los demás de que estás transcribiendo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always let others know you're transcribing."
+          }
+        }
+      }
+    },
+    "Binario": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binary"
+          }
+        }
+      }
+    },
+    "Borrador": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draft"
+          }
+        }
+      }
+    },
+    "Buscar reuniones": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search meetings"
+          }
+        }
+      }
+    },
+    "Cambiar de modelo o idioma": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change model or language"
+          }
+        }
+      }
+    },
+    "Cancelar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Captura": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture"
+          }
+        }
+      }
+    },
+    "Captura Zoom, Meet, Teams o una sala. Anotador transcribe en el Mac y el modelo que elijas redacta puntos clave, decisiones y acciones.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture Zoom, Meet, Teams or a room. Anotador transcribes on your Mac and the model you choose writes key points, decisions and action items."
+          }
+        }
+      }
+    },
+    "Capturando micrófono": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capturing microphone"
+          }
+        }
+      }
+    },
+    "Capturando micrófono y audio del sistema": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capturing microphone and system audio"
+          }
+        }
+      }
+    },
+    "Cerrando": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing"
+          }
+        }
+      }
+    },
+    "Cerrando transcripción…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing transcript…"
+          }
+        }
+      }
+    },
+    "ChatGPT": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ChatGPT"
+          }
+        }
+      }
+    },
+    "ChatGPT (API de OpenAI)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ChatGPT (OpenAI API)"
+          }
+        }
+      }
+    },
+    "Claude": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude"
+          }
+        }
+      }
+    },
+    "Claude (API de Anthropic)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude (Anthropic API)"
+          }
+        }
+      }
+    },
+    "Claude no pudo redactar las notas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude couldn't write the notes."
+          }
+        }
+      }
+    },
+    "Claude rechazó redactar estas notas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude declined to write these notes."
+          }
+        }
+      }
+    },
+    "Comprobar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check"
+          }
+        }
+      }
+    },
+    "Conceder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow"
+          }
+        }
+      }
+    },
+    "Concedido": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allowed"
+          }
+        }
+      }
+    },
+    "Conectado": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected"
+          }
+        }
+      }
+    },
+    "Conectado · %lld modelos": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Connected · %lld model"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Connected · %lld models"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Conectado · %lld modelo"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Conectado · %lld modelos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Conectado, pero “%@” no aparece en la lista. Elige uno.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected, but “%@” isn't in the list. Pick one."
+          }
+        }
+      }
+    },
+    "Conseguir una API key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get an API key"
+          }
+        }
+      }
+    },
+    "Continuar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "Copiar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "Copiar notas en Markdown": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy notes as Markdown"
+          }
+        }
+      }
+    },
+    "Crea una reunión, pulsa Transcribir y céntrate en la conversación.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a meeting, click Transcribe and focus on the conversation."
+          }
+        }
+      }
+    },
+    "Decisiones": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decisions"
+          }
+        }
+      }
+    },
+    "Detener": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "Detener y redactar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop and write notes"
+          }
+        }
+      }
+    },
+    "Detener y redactar las notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop and write the notes"
+          }
+        }
+      }
+    },
+    "Duración: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration: %@"
+          }
+        }
+      }
+    },
+    "EN VIVO": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LIVE"
+          }
+        }
+      }
+    },
+    "El audio y la transcripción nunca salen del Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio and transcript never leave your Mac."
+          }
+        }
+      }
+    },
+    "El modelo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model"
+          }
+        }
+      }
+    },
+    "El modelo de Apple que transcribe en el Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple's model that transcribes on your Mac."
+          }
+        }
+      }
+    },
+    "El texto de la transcripción va a %@ con tu API key. Se factura por uso en tu cuenta.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The transcript text goes to %@ with your API key. Usage is billed to your account."
+          }
+        }
+      }
+    },
+    "El texto de la transcripción va a xAI a través del CLI de Grok con tu suscripción.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The transcript text goes to xAI through the Grok CLI using your subscription."
+          }
+        }
+      }
+    },
+    "El texto va al servidor que configures.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The text goes to the server you configure."
+          }
+        }
+      }
+    },
+    "Elegir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose"
+          }
+        }
+      }
+    },
+    "Elige un audio para transcribirlo en este Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose an audio file to transcribe on this Mac."
+          }
+        }
+      }
+    },
+    "Elige un modelo para %@ en Ajustes → Modelo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a model for %@ in Settings → Model."
+          }
+        }
+      }
+    },
+    "Eliminar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Empezar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        }
+      }
+    },
+    "Empezar a transcribir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start transcribing"
+          }
+        }
+      }
+    },
+    "Empezar a transcribir (⌘⇧M)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start transcribing (⌘⇧M)"
+          }
+        }
+      }
+    },
+    "En una frase": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In one sentence"
+          }
+        }
+      }
+    },
+    "En vivo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live"
+          }
+        }
+      }
+    },
+    "En vivo, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live, %@"
+          }
+        }
+      }
+    },
+    "Entrevista": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interview"
+          }
+        }
+      }
+    },
+    "Escribe contexto o la agenda. El modelo lo tendrá en cuenta.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Write context or the agenda. The model will take it into account."
+          }
+        }
+      }
+    },
+    "Escuchando…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listening…"
+          }
+        }
+      }
+    },
+    "Estas notas se envían al modelo junto con la transcripción.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These notes are sent to the model along with the transcript."
+          }
+        }
+      }
+    },
+    "Este idioma no está disponible para transcripción en el dispositivo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This language isn't available for on-device transcription."
+          }
+        }
+      }
+    },
+    "Estilo de notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes style"
+          }
+        }
+      }
+    },
+    "Estilo de notas, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes style, %@"
+          }
+        }
+      }
+    },
+    "Estructura de las notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure of the notes"
+          }
+        }
+      }
+    },
+    "Exportar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "Exportar notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export notes"
+          }
+        }
+      }
+    },
+    "Falta la API key de %@. Añádela en Ajustes → Modelo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The %@ API key is missing. Add it in Settings → Model."
+          }
+        }
+      }
+    },
+    "General": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        }
+      }
+    },
+    "Grabación de pantalla y audio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen & system audio recording"
+          }
+        }
+      }
+    },
+    "Gratis y privado. El modelo corre en tu Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free and private. The model runs on your Mac."
+          }
+        }
+      }
+    },
+    "Grok": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok"
+          }
+        }
+      }
+    },
+    "Grok (API de xAI)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok (xAI API)"
+          }
+        }
+      }
+    },
+    "Grok (suscripción, CLI)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok (subscription, CLI)"
+          }
+        }
+      }
+    },
+    "Grok CLI encontrado": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok CLI found"
+          }
+        }
+      }
+    },
+    "Grok no tiene sesión. En el terminal: `grok login`. O elige otro proveedor en Ajustes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok isn't logged in. In Terminal: `grok login`. Or choose another provider in Settings."
+          }
+        }
+      }
+    },
+    "Grok se quedó a medias redactando. Pulsa Reintentar; la transcripción ya está guardada.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok stopped halfway. Click Retry; the transcript is already saved."
+          }
+        }
+      }
+    },
+    "Grok tardó demasiado. Pulsa Reintentar; la transcripción ya está guardada.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grok took too long. Click Retry; the transcript is already saved."
+          }
+        }
+      }
+    },
+    "Guía de bienvenida": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome Guide"
+          }
+        }
+      }
+    },
+    "Habilita reconocimiento de voz para transcribir en el Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Speech Recognition to transcribe on your Mac."
+          }
+        }
+      }
+    },
+    "Hay transcripción, pero todavía no hay notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There's a transcript, but no notes yet"
+          }
+        }
+      }
+    },
+    "Hecha": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Idioma de transcripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription language"
+          }
+        }
+      }
+    },
+    "Instrucciones para el modelo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instructions for the model"
+          }
+        }
+      }
+    },
+    "Ir a este momento de la transcripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to this moment in the transcript"
+          }
+        }
+      }
+    },
+    "Ir al minuto %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to %@"
+          }
+        }
+      }
+    },
+    "LM Studio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LM Studio"
+          }
+        }
+      }
+    },
+    "LM Studio (local)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LM Studio (local)"
+          }
+        }
+      }
+    },
+    "La URL del servidor no es válida. Revísala en Ajustes → Modelo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The server URL isn't valid. Check it in Settings → Model."
+          }
+        }
+      }
+    },
+    "La respuesta de %@ se cortó por longitud. Prueba un modelo con más contexto.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@'s response was cut off for length. Try a model with a larger context."
+          }
+        }
+      }
+    },
+    "La respuesta de Claude se cortó por longitud. Pulsa Reintentar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude's response was cut off for length. Click Retry."
+          }
+        }
+      }
+    },
+    "La sesión se interrumpió antes de guardar la transcripción.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The session was interrupted before the transcript was saved."
+          }
+        }
+      }
+    },
+    "La sesión se interrumpió. La transcripción guardada está a salvo: pulsa Reintentar para redactar las notas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The session was interrupted. The saved transcript is safe: click Retry to write the notes."
+          }
+        }
+      }
+    },
+    "La transcripción es siempre local. Elige qué modelo convierte el texto en notas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription is always local. Choose which model turns the text into notes."
+          }
+        }
+      }
+    },
+    "Lista": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready"
+          }
+        }
+      }
+    },
+    "Local": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local"
+          }
+        }
+      }
+    },
+    "Marcar como hecha": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as done"
+          }
+        }
+      }
+    },
+    "Marcar como pendiente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as not done"
+          }
+        }
+      }
+    },
+    "Micrófono": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microphone"
+          }
+        }
+      }
+    },
+    "Micrófono + audio del sistema (Zoom, Meet, Teams, FaceTime)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microphone + system audio (Zoom, Meet, Teams, FaceTime)"
+          }
+        }
+      }
+    },
+    "Micrófono para tu voz. Grabación de pantalla para el audio del sistema de Zoom, Meet, Teams o FaceTime. Reconocimiento de voz para el modelo on-device.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microphone for your voice. Screen Recording for system audio from Zoom, Meet, Teams or FaceTime. Speech Recognition for the on-device model."
+          }
+        }
+      }
+    },
+    "Modelo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model"
+          }
+        }
+      }
+    },
+    "Modo de captura": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture mode"
+          }
+        }
+      }
+    },
+    "Mostrar u ocultar notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show or hide notes"
+          }
+        }
+      }
+    },
+    "Nada se queda en el aire": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing slips through the cracks"
+          }
+        }
+      }
+    },
+    "Niveles de audio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio levels"
+          }
+        }
+      }
+    },
+    "No encontrado. Instala Grok CLI y ejecuta `grok login`.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not found. Install the Grok CLI and run `grok login`."
+          }
+        }
+      }
+    },
+    "No encuentro el CLI de Grok. Instálalo e inicia sesión con `grok login`, o elige otro proveedor en Ajustes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't find the Grok CLI. Install it and log in with `grok login`, or choose another provider in Settings."
+          }
+        }
+      }
+    },
+    "No hay suficiente conversación para redactar notas. Habla al menos un minuto.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There isn't enough conversation to write notes. Talk for at least a minute."
+          }
+        }
+      }
+    },
+    "No pude convertir el audio para transcribirlo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't convert the audio for transcription."
+          }
+        }
+      }
+    },
+    "No pude leer las notas que devolvió %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't read the notes %@ returned."
+          }
+        }
+      }
+    },
+    "No puedo conectar con %@ en %@. ¿Está abierto y con el servidor activo?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't connect to %1$@ at %2$@. Is it open with the server running?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No puedo conectar con %1$@ en %2$@. ¿Está abierto y con el servidor activo?"
+          }
+        }
+      }
+    },
+    "No puedo conectar con %@. Revisa la conexión o la URL.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't connect to %@. Check your connection or the URL."
+          }
+        }
+      }
+    },
+    "Notas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes"
+          }
+        }
+      }
+    },
+    "Notas en vivo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live notes"
+          }
+        }
+      }
+    },
+    "Notas que se pueden usar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes you can act on"
+          }
+        }
+      }
+    },
+    "Notas: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes: %@"
+          }
+        }
+      }
+    },
+    "Nueva reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New meeting"
+          }
+        }
+      }
+    },
+    "Ollama": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama"
+          }
+        }
+      }
+    },
+    "Ollama (local)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama (local)"
+          }
+        }
+      }
+    },
+    "Ollama devolvió una respuesta sin contenido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama returned an empty response."
+          }
+        }
+      }
+    },
+    "Omitir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        }
+      }
+    },
+    "On-device con SpeechAnalyzer. El audio no sale del Mac.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On-device with SpeechAnalyzer. Audio never leaves your Mac."
+          }
+        }
+      }
+    },
+    "Ordenando lo que no puede quedar en el aire…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Making sure nothing slips through…"
+          }
+        }
+      }
+    },
+    "Otro compatible con OpenAI": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other OpenAI-compatible"
+          }
+        }
+      }
+    },
+    "Pagas solo lo que usas con tu propia clave.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pay only for what you use with your own key."
+          }
+        }
+      }
+    },
+    "Para oír a los demás en Zoom, Meet o Teams, concede grabación de pantalla / audio del sistema.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To hear others on Zoom, Meet or Teams, allow screen / system audio recording."
+          }
+        }
+      }
+    },
+    "Para transcribir tu voz.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To transcribe your voice."
+          }
+        }
+      }
+    },
+    "Participantes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Participants"
+          }
+        }
+      }
+    },
+    "Paso %lld de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step %1$lld of %2$lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Paso %1$lld de %2$lld"
+          }
+        }
+      }
+    },
+    "Pendiente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not done"
+          }
+        }
+      }
+    },
+    "Permisos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permissions"
+          }
+        }
+      }
+    },
+    "Personalizado": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom"
+          }
+        }
+      }
+    },
+    "Preferencias": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferences"
+          }
+        }
+      }
+    },
+    "Preguntas abiertas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open questions"
+          }
+        }
+      }
+    },
+    "Preparando transcripción on-device…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing on-device transcription…"
+          }
+        }
+      }
+    },
+    "Presencial": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In person"
+          }
+        }
+      }
+    },
+    "Privacidad": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        }
+      }
+    },
+    "Privado por diseño": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Private by design"
+          }
+        }
+      }
+    },
+    "Probar y cargar modelos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test and load models"
+          }
+        }
+      }
+    },
+    "Producto": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Product"
+          }
+        }
+      }
+    },
+    "Proveedor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider"
+          }
+        }
+      }
+    },
+    "Próximos pasos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next steps"
+          }
+        }
+      }
+    },
+    "Pulsa Regenerar para redactarlas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click Regenerate to write them."
+          }
+        }
+      }
+    },
+    "Pulsa Transcribir durante la reunión o sube un audio.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click Transcribe during the meeting or upload a recording."
+          }
+        }
+      }
+    },
+    "Puntos clave": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key points"
+          }
+        }
+      }
+    },
+    "Recientes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent"
+          }
+        }
+      }
+    },
+    "Reconocimiento de voz": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech Recognition"
+          }
+        }
+      }
+    },
+    "Redactando": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing"
+          }
+        }
+      }
+    },
+    "Regenerar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenerate"
+          }
+        }
+      }
+    },
+    "Reintentar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        }
+      }
+    },
+    "Resumen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary"
+          }
+        }
+      }
+    },
+    "Resumen, puntos clave con citas, decisiones y acciones con responsable y fecha.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary, key points with quotes, decisions and action items with owner and due date."
+          }
+        }
+      }
+    },
+    "Reuniones virtuales": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Virtual meetings"
+          }
+        }
+      }
+    },
+    "Reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meeting"
+          }
+        }
+      }
+    },
+    "Reunión %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meeting %@"
+          }
+        }
+      }
+    },
+    "Reunión virtual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Virtual meeting"
+          }
+        }
+      }
+    },
+    "Revisar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs review"
+          }
+        }
+      }
+    },
+    "Riesgos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risks"
+          }
+        }
+      }
+    },
+    "Salir de Anotador": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit Anotador"
+          }
+        }
+      }
+    },
+    "Se cortó el audio del sistema (%@). Sigo con el micrófono.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System audio dropped (%@). Continuing with the microphone."
+          }
+        }
+      }
+    },
+    "Sección": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Section"
+          }
+        }
+      }
+    },
+    "Sección de la reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meeting section"
+          }
+        }
+      }
+    },
+    "Seguir transcribiendo esta reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep transcribing this meeting"
+          }
+        }
+      }
+    },
+    "Sin conexión a internet. La transcripción está guardada; pulsa Reintentar cuando vuelva la red.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No internet connection. The transcript is saved; click Retry when you're back online."
+          }
+        }
+      }
+    },
+    "Sin transcripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No transcript"
+          }
+        }
+      }
+    },
+    "Solo micrófono, para una sala o una llamada en altavoz": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microphone only, for a room or a speakerphone call"
+          }
+        }
+      }
+    },
+    "Solo para oír a los demás en reuniones virtuales. No se graba vídeo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only to hear others in virtual meetings. No video is recorded."
+          }
+        }
+      }
+    },
+    "Standup": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standup"
+          }
+        }
+      }
+    },
+    "Subir audio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upload audio"
+          }
+        }
+      }
+    },
+    "Suscripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscription"
+          }
+        }
+      }
+    },
+    "Temas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topics"
+          }
+        }
+      }
+    },
+    "Todavía no hay resumen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No summary yet"
+          }
+        }
+      }
+    },
+    "Todo listo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're all set"
+          }
+        }
+      }
+    },
+    "Todo se queda en este Mac: el modelo corre en local.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything stays on this Mac: the model runs locally."
+          }
+        }
+      }
+    },
+    "Transcribe una grabación que ya tengas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribe a recording you already have"
+          }
+        }
+      }
+    },
+    "Transcribiendo archivo en el Mac…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribing file on your Mac…"
+          }
+        }
+      }
+    },
+    "Transcribir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribe"
+          }
+        }
+      }
+    },
+    "Transcripción": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcript"
+          }
+        }
+      }
+    },
+    "Tu micrófono aparece como Tú. El audio del sistema, como Participantes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your microphone shows up as You. System audio, as Participants."
+          }
+        }
+      }
+    },
+    "Tu micrófono y el audio de Zoom, Meet o Teams van por carriles distintos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your microphone and Zoom, Meet or Teams audio are captured on separate lanes."
+          }
+        }
+      }
+    },
+    "Título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title"
+          }
+        }
+      }
+    },
+    "Título de la reunión": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meeting title"
+          }
+        }
+      }
+    },
+    "Tú": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You"
+          }
+        }
+      }
+    },
+    "Tú y los demás, separados": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You and everyone else, separated"
+          }
+        }
+      }
+    },
+    "URL del servidor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server URL"
+          }
+        }
+      }
+    },
+    "Usa la cuenta que ya pagas. Sin claves.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the account you already pay for. No keys."
+          }
+        }
+      }
+    },
+    "Ventas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sales"
+          }
+        }
+      }
+    },
+    "audio del sistema": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "system audio"
+          }
+        }
+      }
+    },
+    "grabación de pantalla": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen recording"
+          }
+        }
+      }
+    },
+    "macOS bloquea http:// a ese servidor. Usa https://, localhost o una IP.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS blocks http:// to that server. Use https://, localhost or an IP address."
+          }
+        }
+      }
+    },
+    "macOS te los pedirá una vez. Puedes concederlos ahora o al grabar por primera vez.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS asks once. You can allow them now or the first time you record."
+          }
+        }
+      }
+    },
+    "otro proveedor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "another provider"
+          }
+        }
+      }
+    },
+    "~/Library/Application Support/Anotador/Meetings": {
+      "shouldTranslate": false
+    },
+    "·": {
+      "shouldTranslate": false
+    },
+    "¿Quién redacta las notas?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who writes the notes?"
+          }
+        }
+      }
+    },
+    "“%@”": {
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.0"
+}

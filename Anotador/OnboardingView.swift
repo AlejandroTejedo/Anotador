@@ -63,7 +63,7 @@ struct OnboardingView: View {
             Spacer()
             StepDots(current: step.rawValue, count: Step.allCases.count)
             Spacer()
-            Button(step == .ready ? "Empezar" : "Continuar") {
+            Button(step == .ready ? LocalizedStringKey("Empezar") : LocalizedStringKey("Continuar")) {
                 step == .ready ? onFinish() : go(1)
             }
             .buttonStyle(.borderedProminent)
@@ -99,8 +99,8 @@ private struct StepDots: View {
 
 private struct StepHeader: View {
     let systemImage: String
-    let title: String
-    let subtitle: String
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey
 
     var body: some View {
         VStack(spacing: 10) {
@@ -153,8 +153,8 @@ private struct WelcomeStep: View {
 
 private struct FeatureRow: View {
     let systemImage: String
-    let title: String
-    let detail: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -232,8 +232,8 @@ private struct PermissionsStep: View {
 
 private struct PermissionRow: View {
     let systemImage: String
-    let title: String
-    let detail: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
     let state: PermissionState
     var optional = false
     var request: () -> Void
@@ -382,11 +382,11 @@ private struct ReadyStep: View {
 
 private struct ShortcutRow: View {
     let keys: String
-    let action: String
+    let action: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: 14) {
-            Text(keys)
+            Text(verbatim: keys)
                 .font(.body.monospaced().weight(.medium))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)

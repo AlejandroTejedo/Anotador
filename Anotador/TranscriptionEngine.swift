@@ -13,6 +13,28 @@ struct TranscriptUpdate: Sendable {
 enum EngineEvent: Sendable {
     case transcript(TranscriptUpdate)
     case warning(String)
+    /// 0…1 loudness per lane, throttled, so the UI can show audio is arriving.
+    case level(SpeakerLane, Float)
+}
+
+enum AudioLevel {
+    static let emitInterval: CFAbsoluteTime = 1.0 / 12
+
+    /// RMS mapped from -60…0 dBFS to 0…1.
+    static func normalized(_ buffer: AVAudioPCMBuffer) -> Float {
+        guard let data = buffer.floatChannelData, buffer.frameLength > 0 else { return 0 }
+        let samples = UnsafeBufferPointer(start: data[0], count: Int(buffer.frameLength))
+        return normalized(samples)
+    }
+
+    static func normalized<C: Collection>(_ samples: C) -> Float where C.Element == Float {
+        guard !samples.isEmpty else { return 0 }
+        let meanSquare = samples.reduce(Float(0)) { $0 + $1 * $1 } / Float(samples.count)
+        let rms = meanSquare.squareRoot()
+        guard rms > 0 else { return 0 }
+        let db = 20 * log10(rms)
+        return min(max((db + 60) / 60, 0), 1)
+    }
 }
 
 /// Wall-clock origin shared by both lanes and the UI timer. Set right before
@@ -179,6 +201,8 @@ final class TranscriptionEngine: @unchecked Sendable {
     private let capture = CaptureService()
     private var micWriter: LaneWriter?
     private var systemWriter: LaneWriter?
+    private var onEvent: (@Sendable (EngineEvent) -> Void)?
+    private var lastLevelEmit: [SpeakerLane: CFAbsoluteTime] = [:]
     let clock = SessionClock()
 
     func start(
@@ -192,6 +216,10 @@ final class TranscriptionEngine: @unchecked Sendable {
         let micURL = folder.appendingPathComponent("mic-\(stamp).caf")
         let systemURL = folder.appendingPathComponent("system-\(stamp).caf")
         let onUpdate: @Sendable (TranscriptUpdate) -> Void = { onEvent(.transcript($0)) }
+        lock.withLock {
+            self.onEvent = onEvent
+            lastLevelEmit = [:]
+        }
 
         do {
             let micLane = LaneTranscriber(lane: .you, clock: clock, onUpdate: onUpdate)
@@ -221,7 +249,7 @@ final class TranscriptionEngine: @unchecked Sendable {
                 self?.handle(buffer, lane: .others)
             }
             capture.onError = { error in
-                onEvent(.warning("Se cortó el audio del sistema (\(error.localizedDescription)). Sigo con el micrófono."))
+                onEvent(.warning(String(localized: "Se cortó el audio del sistema (\(error.localizedDescription)). Sigo con el micrófono.")))
             }
 
             clock.reset()
@@ -242,6 +270,7 @@ final class TranscriptionEngine: @unchecked Sendable {
             system = nil
             micWriter = nil
             systemWriter = nil
+            onEvent = nil
             return lanes
         }
         await micLane?.finish()
@@ -249,11 +278,18 @@ final class TranscriptionEngine: @unchecked Sendable {
     }
 
     private func handle(_ buffer: AVAudioPCMBuffer, lane: SpeakerLane) {
-        let (transcriber, writer): (LaneTranscriber?, LaneWriter?) = lock.withLock {
-            lane == .you ? (mic, micWriter) : (system, systemWriter)
+        let now = CFAbsoluteTimeGetCurrent()
+        let (transcriber, writer, emit): (LaneTranscriber?, LaneWriter?, (@Sendable (EngineEvent) -> Void)?) = lock.withLock {
+            var emit: (@Sendable (EngineEvent) -> Void)?
+            if now - (lastLevelEmit[lane] ?? 0) >= AudioLevel.emitInterval {
+                lastLevelEmit[lane] = now
+                emit = onEvent
+            }
+            return lane == .you ? (mic, micWriter, emit) : (system, systemWriter, emit)
         }
         transcriber?.ingest(buffer)
         writer?.write(buffer)
+        emit?(.level(lane, AudioLevel.normalized(buffer)))
     }
 }
 

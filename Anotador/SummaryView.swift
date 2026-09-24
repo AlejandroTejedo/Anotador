@@ -5,6 +5,13 @@ struct SummaryView: View {
     var onJump: (TimeInterval) -> Void = { _ in }
 
     var body: some View {
+        content
+            .animation(.smooth(duration: 0.4), value: meeting.phase)
+            .animation(.smooth(duration: 0.4), value: meeting.summaryJSON.isEmpty)
+    }
+
+    @ViewBuilder
+    private var content: some View {
         if let notes = meeting.notesDocument {
             ScrollView {
                 SummaryDocumentView(
@@ -18,13 +25,17 @@ struct SummaryView: View {
                 .frame(maxWidth: .infinity)
             }
             .scrollEdgeEffectStyle(.soft, for: .top)
+            .transition(.opacity.combined(with: .offset(y: 12)))
         } else if meeting.phase.isBusy {
             ContentUnavailableView {
-                ProgressView()
-                    .controlSize(.large)
+                Image(systemName: "sparkles")
+                    .font(.system(size: 40))
+                    .foregroundStyle(Palette.terracotta)
+                    .symbolEffect(.pulse)
             } description: {
                 Text("Ordenando lo que no puede quedar en el aire…")
             }
+            .transition(.opacity)
         } else if meeting.lines.isEmpty {
             ContentUnavailableView(
                 "Todavía no hay resumen",
@@ -157,14 +168,19 @@ private struct StatsStrip: View {
 
     private var stats: [(String, String, Color)] {
         var result: [(String, String, Color)] = []
-        func add(_ count: Int, _ singular: String, _ plural: String, _ icon: String, _ tint: Color) {
+        func add(_ count: Int, _ label: String, _ icon: String, _ tint: Color) {
             guard count > 0 else { return }
-            result.append(("\(count) \(count == 1 ? singular : plural)", icon, tint))
+            result.append((label, icon, tint))
         }
-        add(notes.actionItems.count, "acción", "acciones", "checklist", Palette.terracotta)
-        add(notes.decisions.count, "decisión", "decisiones", "checkmark.seal", Palette.success)
-        add(notes.openQuestions.count, "pregunta abierta", "preguntas abiertas", "questionmark.circle", Palette.question)
-        add(notes.risks.count, "riesgo", "riesgos", "exclamationmark.triangle", Palette.warning)
+        // Plural forms live in Localizable.xcstrings.
+        let actions = notes.actionItems.count
+        let decisions = notes.decisions.count
+        let questions = notes.openQuestions.count
+        let risks = notes.risks.count
+        add(actions, String(localized: "\(actions) acciones"), "checklist", Palette.terracotta)
+        add(decisions, String(localized: "\(decisions) decisiones"), "checkmark.seal", Palette.success)
+        add(questions, String(localized: "\(questions) preguntas abiertas"), "questionmark.circle", Palette.question)
+        add(risks, String(localized: "\(risks) riesgos"), "exclamationmark.triangle", Palette.warning)
         return result
     }
 
@@ -186,7 +202,7 @@ private struct StatsStrip: View {
 }
 
 private struct SummarySection<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     var trailing: String?
     @ViewBuilder let content: Content
 
@@ -257,7 +273,7 @@ private struct KeyPointRow: View {
 }
 
 private struct IconList: View {
-    let title: String
+    let title: LocalizedStringKey
     let systemImage: String
     let tint: Color
     let items: [String]
@@ -314,7 +330,7 @@ private struct ActionRow: View {
                     .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(item.done ? "Marcar como pendiente" : "Marcar como hecha")
+            .accessibilityLabel(item.done ? LocalizedStringKey("Marcar como pendiente") : LocalizedStringKey("Marcar como hecha"))
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(item.task)
@@ -339,8 +355,8 @@ private struct ActionRow: View {
         .animation(.snappy, value: item.done)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(label)
-        .accessibilityValue(item.done ? "Hecha" : "Pendiente")
-        .accessibilityAction(named: item.done ? "Marcar como pendiente" : "Marcar como hecha", onToggle)
+        .accessibilityValue(item.done ? LocalizedStringKey("Hecha") : LocalizedStringKey("Pendiente"))
+        .accessibilityAction(named: item.done ? Text("Marcar como pendiente") : Text("Marcar como hecha"), onToggle)
     }
 
     private var hasMeta: Bool {

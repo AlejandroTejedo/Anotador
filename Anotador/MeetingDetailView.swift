@@ -32,12 +32,18 @@ struct MeetingDetailView: View {
                 onImport: { importing = true }
             )
             Divider()
-            if isLive {
-                LiveTranscriptHost()
-            } else {
-                FinishedMeetingBody(meeting: meeting, tab: $tab)
+            Group {
+                if isLive {
+                    LiveTranscriptHost()
+                        .transition(.opacity)
+                } else {
+                    FinishedMeetingBody(meeting: meeting, tab: $tab)
+                        .transition(.opacity)
+                }
             }
+            .animation(.smooth(duration: 0.35), value: isLive)
         }
+        .animation(.smooth(duration: 0.3), value: isLive)
         .background(.background)
         .navigationTitle(meeting.title)
         .toolbar(removing: .title)
@@ -124,7 +130,11 @@ private struct MeetingHeader: View {
                 }
                 Spacer(minLength: 12)
                 if isLive {
-                    ElapsedBadge()
+                    VStack(alignment: .trailing, spacing: 8) {
+                        ElapsedBadge()
+                        LevelMeters(lanes: meeting.captureMode.capturesSystemAudio ? [.you, .others] : [.you])
+                    }
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
             }
 
@@ -181,7 +191,7 @@ extension MeetingHeader {
                 }
                 .pickerStyle(.inline)
             } label: {
-                Label(compact ? meeting.style.name : "Notas: \(meeting.style.name)", systemImage: "text.alignleft")
+                Label(compact ? meeting.style.name : String(localized: "Notas: \(meeting.style.name)"), systemImage: "text.alignleft")
             }
             .menuStyle(.button)
             .buttonStyle(.bordered)
@@ -209,11 +219,11 @@ extension MeetingHeader {
                 .help("Transcribe una grabación que ya tengas")
 
                 Button(action: onStart) {
-                    Label(meeting.lines.isEmpty ? "Transcribir" : "Continuar", systemImage: "record.circle")
+                    Label(meeting.lines.isEmpty ? LocalizedStringKey("Transcribir") : LocalizedStringKey("Continuar"), systemImage: "record.circle")
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(!canStart)
-                .help(meeting.lines.isEmpty ? "Empezar a transcribir (⌘⇧M)" : "Seguir transcribiendo esta reunión")
+                .help(meeting.lines.isEmpty ? LocalizedStringKey("Empezar a transcribir (⌘⇧M)") : LocalizedStringKey("Seguir transcribiendo esta reunión"))
             }
         }
     }
@@ -265,6 +275,45 @@ struct PhaseChip: View {
             Text(phase.name)
         }
         .foregroundStyle(phase == .ready ? .secondary : phase.color)
+    }
+}
+
+/// Tiny per-lane meters so you can see audio is arriving before any text does.
+struct LevelMeters: View {
+    @Environment(AppModel.self) private var appModel
+    let lanes: [SpeakerLane]
+
+    var body: some View {
+        VStack(alignment: .trailing, spacing: 4) {
+            ForEach(lanes) { lane in
+                HStack(spacing: 6) {
+                    Text(lane.name)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                    LevelBar(level: CGFloat(appModel.levels[lane] ?? 0), tint: lane.color)
+                }
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Niveles de audio")
+        .accessibilityValue(lanes.map { "\($0.name) \(Int((appModel.levels[$0] ?? 0) * 100))%" }.joined(separator: ", "))
+    }
+}
+
+private struct LevelBar: View {
+    let level: CGFloat
+    let tint: Color
+
+    var body: some View {
+        Capsule()
+            .fill(.quaternary)
+            .frame(width: 64, height: 5)
+            .overlay(alignment: .leading) {
+                Capsule()
+                    .fill(tint)
+                    .frame(width: max(4, 64 * level), height: 5)
+            }
+            .animation(.linear(duration: 0.08), value: level)
     }
 }
 
@@ -385,11 +434,11 @@ private struct NotesInspector: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label(isLive ? "Notas en vivo" : "Agenda y notas", systemImage: "square.and.pencil")
+            Label(isLive ? LocalizedStringKey("Notas en vivo") : LocalizedStringKey("Agenda y notas"), systemImage: "square.and.pencil")
                 .font(.headline)
             Text(isLive
-                 ? "Escribe contexto o la agenda. El modelo lo tendrá en cuenta."
-                 : "Estas notas se envían al modelo junto con la transcripción.")
+                 ? LocalizedStringKey("Escribe contexto o la agenda. El modelo lo tendrá en cuenta.")
+                 : LocalizedStringKey("Estas notas se envían al modelo junto con la transcripción."))
                 .font(.caption)
                 .foregroundStyle(.secondary)
             TextEditor(text: $text)

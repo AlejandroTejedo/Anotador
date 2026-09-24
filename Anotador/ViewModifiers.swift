@@ -57,14 +57,16 @@ extension View {
 }
 
 extension String {
+    /// Error texts are persisted as strings, so these match the localized
+    /// fragments the errors are built from (see `AnotadorError`).
     var suggestsScreenPermission: Bool {
-        localizedCaseInsensitiveContains("grabación de pantalla")
-            || localizedCaseInsensitiveContains("audio del sistema")
+        [String(localized: "grabación de pantalla"), String(localized: "audio del sistema"), "grabación de pantalla", "audio del sistema"]
+            .contains { localizedCaseInsensitiveContains($0) }
     }
 
     var suggestsProviderSettings: Bool {
-        localizedCaseInsensitiveContains("Ajustes → Modelo")
-            || localizedCaseInsensitiveContains("otro proveedor")
+        [String(localized: "Ajustes → Modelo"), String(localized: "otro proveedor"), "Ajustes → Modelo", "otro proveedor"]
+            .contains { localizedCaseInsensitiveContains($0) }
     }
 
     func copyToPasteboard() {

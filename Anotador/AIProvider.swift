@@ -15,25 +15,25 @@ enum AIProvider: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var name: String {
         switch self {
-        case .grokCLI: "Grok (suscripción, CLI)"
-        case .xAI: "Grok (API de xAI)"
-        case .openAI: "ChatGPT (API de OpenAI)"
-        case .anthropic: "Claude (API de Anthropic)"
-        case .ollama: "Ollama (local)"
-        case .lmStudio: "LM Studio (local)"
-        case .openAICompatible: "Otro compatible con OpenAI"
+        case .grokCLI: String(localized: "Grok (suscripción, CLI)")
+        case .xAI: String(localized: "Grok (API de xAI)")
+        case .openAI: String(localized: "ChatGPT (API de OpenAI)")
+        case .anthropic: String(localized: "Claude (API de Anthropic)")
+        case .ollama: String(localized: "Ollama (local)")
+        case .lmStudio: String(localized: "LM Studio (local)")
+        case .openAICompatible: String(localized: "Otro compatible con OpenAI")
         }
     }
 
     /// Short label for status messages ("Grok está redactando…").
     var shortName: String {
         switch self {
-        case .grokCLI, .xAI: "Grok"
-        case .openAI: "ChatGPT"
-        case .anthropic: "Claude"
-        case .ollama: "Ollama"
-        case .lmStudio: "LM Studio"
-        case .openAICompatible: "El modelo"
+        case .grokCLI, .xAI: String(localized: "Grok")
+        case .openAI: String(localized: "ChatGPT")
+        case .anthropic: String(localized: "Claude")
+        case .ollama: String(localized: "Ollama")
+        case .lmStudio: String(localized: "LM Studio")
+        case .openAICompatible: String(localized: "El modelo")
         }
     }
 
@@ -62,17 +62,17 @@ enum AIProvider: String, CaseIterable, Identifiable, Codable, Sendable {
 
         var title: String {
             switch self {
-            case .subscription: "Suscripción"
-            case .apiKey: "API key (pago por uso)"
-            case .local: "Local"
+            case .subscription: String(localized: "Suscripción")
+            case .apiKey: String(localized: "API key (pago por uso)")
+            case .local: String(localized: "Local")
             }
         }
 
         var subtitle: String {
             switch self {
-            case .subscription: "Usa la cuenta que ya pagas. Sin claves."
-            case .apiKey: "Pagas solo lo que usas con tu propia clave."
-            case .local: "Gratis y privado. El modelo corre en tu Mac."
+            case .subscription: String(localized: "Usa la cuenta que ya pagas. Sin claves.")
+            case .apiKey: String(localized: "Pagas solo lo que usas con tu propia clave.")
+            case .local: String(localized: "Gratis y privado. El modelo corre en tu Mac.")
             }
         }
 
@@ -153,13 +153,13 @@ enum AIProvider: String, CaseIterable, Identifiable, Codable, Sendable {
     var privacyNote: String {
         switch self {
         case .grokCLI:
-            "El texto de la transcripción va a xAI a través del CLI de Grok con tu suscripción."
+            String(localized: "El texto de la transcripción va a xAI a través del CLI de Grok con tu suscripción.")
         case .xAI, .openAI, .anthropic:
-            "El texto de la transcripción va a \(shortName) con tu API key. Se factura por uso en tu cuenta."
+            String(localized: "El texto de la transcripción va a \(shortName) con tu API key. Se factura por uso en tu cuenta.")
         case .ollama, .lmStudio:
-            "Todo se queda en este Mac: el modelo corre en local."
+            String(localized: "Todo se queda en este Mac: el modelo corre en local.")
         case .openAICompatible:
-            "El texto va al servidor que configures."
+            String(localized: "El texto va al servidor que configures.")
         }
     }
 }
