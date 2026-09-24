@@ -40,6 +40,7 @@ struct MeetingDetailView: View {
         }
         .background(.background)
         .navigationTitle(meeting.title)
+        .toolbar(removing: .title)
         .inspector(isPresented: $showNotesInspector) {
             NotesInspector(text: $meeting.notes, isLive: isLive)
                 .inspectorColumnWidth(min: 240, ideal: 300, max: 480)
@@ -110,56 +111,29 @@ private struct MeetingHeader: View {
     var onImport: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .firstTextBaseline) {
-                TextField("Título", text: $meeting.title)
-                    .textFieldStyle(.plain)
-                    .font(.title2.weight(.semibold))
-                Spacer()
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 16) {
+                VStack(alignment: .leading, spacing: 4) {
+                    TextField("Título", text: $meeting.title, axis: .vertical)
+                        .layoutPriority(-1)
+                        .textFieldStyle(.plain)
+                        .font(.title.weight(.semibold))
+                        .lineLimit(1...3)
+                        .accessibilityLabel("Título de la reunión")
+                    MeetingMetaLine(meeting: meeting, isLive: isLive)
+                }
+                Spacer(minLength: 12)
                 if isLive {
                     ElapsedBadge()
-                } else if meeting.duration > 0 {
-                    Text(meeting.formattedDuration)
-                        .foregroundStyle(.secondary)
-                        .monospacedDigit()
                 }
             }
 
-            HStack(spacing: 10) {
-                Picker("Captura", selection: $meeting.captureModeRaw) {
-                    ForEach(CaptureMode.allCases) { mode in
-                        Text(mode.name).tag(mode.rawValue)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .frame(maxWidth: 280)
-                .disabled(isLive)
-                .labelsHidden()
-                .accessibilityLabel("Modo de captura")
-
-                Picker("Notas", selection: $meeting.styleRaw) {
-                    ForEach(SummaryStyle.allCases) { style in
-                        Text(style.name).tag(style.rawValue)
-                    }
-                }
-                .frame(maxWidth: 160)
-                .disabled(isLive)
-                .labelsHidden()
-                .accessibilityLabel("Estilo de notas")
-
-                Spacer()
-
-                if isLive {
-                    Button("Detener", role: .destructive, action: onStop)
-                        .keyboardShortcut(.return, modifiers: [.command])
-                } else {
-                    Button("Transcribir", action: onStart)
-                        .buttonStyle(.borderedProminent)
-                        .disabled(!canStart)
-                    Button("Subir audio", action: onImport)
-                        .disabled(meeting.phase.isBusy)
-                }
+            // Full labels when there's room; icon-only when the notes inspector squeezes us.
+            ViewThatFits(in: .horizontal) {
+                controls(compact: false)
+                controls(compact: true)
             }
+            .controlSize(.large)
 
             if meeting.style == .custom {
                 TextField("Instrucciones para el modelo", text: $meeting.customInstructions, axis: .vertical)
@@ -169,7 +143,128 @@ private struct MeetingHeader: View {
 
             SessionStatusBanner(meeting: meeting)
         }
-        .padding(20)
+        .padding(.horizontal, 24)
+        .padding(.top, 18)
+        .padding(.bottom, 16)
+    }
+}
+
+extension MeetingHeader {
+    @ViewBuilder
+    func controls(compact: Bool) -> some View {
+        HStack(spacing: 10) {
+            Picker("Captura", selection: $meeting.captureModeRaw) {
+                ForEach(CaptureMode.allCases) { mode in
+                    Group {
+                        if compact {
+                            Image(systemName: mode.systemImage)
+                        } else {
+                            Label(mode.name, systemImage: mode.systemImage)
+                        }
+                    }
+                    .tag(mode.rawValue)
+                    .help(mode.name)
+                }
+            }
+            .pickerStyle(.segmented)
+            .fixedSize()
+            .disabled(isLive)
+            .labelsHidden()
+            .help(meeting.captureMode.subtitle)
+            .accessibilityLabel("Modo de captura")
+
+            Menu {
+                Picker("Estilo de notas", selection: $meeting.styleRaw) {
+                    ForEach(SummaryStyle.allCases) { style in
+                        Text(style.name).tag(style.rawValue)
+                    }
+                }
+                .pickerStyle(.inline)
+            } label: {
+                Label(compact ? meeting.style.name : "Notas: \(meeting.style.name)", systemImage: "text.alignleft")
+            }
+            .menuStyle(.button)
+            .buttonStyle(.bordered)
+            .fixedSize()
+            .disabled(isLive)
+            .help("Estructura de las notas")
+            .accessibilityLabel("Estilo de notas, \(meeting.style.name)")
+
+            Spacer(minLength: 8)
+
+            if isLive {
+                Button(role: .destructive, action: onStop) {
+                    Label("Detener y redactar", systemImage: "stop.fill")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Palette.rec)
+                .keyboardShortcut(.return, modifiers: [.command])
+            } else {
+                Button(action: onImport) {
+                    Label("Subir audio", systemImage: "square.and.arrow.down")
+                        .labelStyle(AdaptiveLabelStyle(compact: compact))
+                }
+                .buttonStyle(.bordered)
+                .disabled(meeting.phase.isBusy)
+                .help("Transcribe una grabación que ya tengas")
+
+                Button(action: onStart) {
+                    Label(meeting.lines.isEmpty ? "Transcribir" : "Continuar", systemImage: "record.circle")
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(!canStart)
+                .help(meeting.lines.isEmpty ? "Empezar a transcribir (⌘⇧M)" : "Seguir transcribiendo esta reunión")
+            }
+        }
+    }
+}
+
+private struct AdaptiveLabelStyle: LabelStyle {
+    let compact: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        if compact {
+            Label(configuration).labelStyle(.iconOnly)
+        } else {
+            Label(configuration).labelStyle(.titleAndIcon)
+        }
+    }
+}
+
+private struct MeetingMetaLine: View {
+    let meeting: Meeting
+    let isLive: Bool
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Text(meeting.createdAt.formatted(.dateTime.weekday(.wide).day().month(.wide).hour().minute()))
+            if !isLive, meeting.duration > 0 {
+                Text("·")
+                Text(meeting.durationDescription)
+            }
+            if !isLive, meeting.phase != .draft {
+                Text("·")
+                PhaseChip(phase: meeting.phase)
+            }
+        }
+        .font(.callout)
+        .foregroundStyle(.secondary)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+struct PhaseChip: View {
+    let phase: MeetingPhase
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(phase.color)
+                .frame(width: 6, height: 6)
+                .accessibilityHidden(true)
+            Text(phase.name)
+        }
+        .foregroundStyle(phase == .ready ? .secondary : phase.color)
     }
 }
 
@@ -201,7 +296,7 @@ private struct SessionStatusBanner: View {
             if appModel.isActive(meeting), !appModel.liveWarning.isEmpty {
                 HStack(alignment: .top) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundStyle(.yellow)
+                        .foregroundStyle(Palette.warning)
                         .accessibilityHidden(true)
                     Text(appModel.liveWarning)
                     Spacer()
@@ -214,9 +309,10 @@ private struct SessionStatusBanner: View {
             if !message.isEmpty {
                 HStack(alignment: .top) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundStyle(.yellow)
+                        .foregroundStyle(Palette.warning)
                         .accessibilityHidden(true)
                     Text(message)
+                        .textSelection(.enabled)
                     Spacer()
                     if message.suggestsScreenPermission {
                         Button("Ajustes") { appModel.openScreenPrivacySettings() }
@@ -248,6 +344,7 @@ private struct LiveTranscriptHost: View {
 private struct FinishedMeetingBody: View {
     let meeting: Meeting
     @Binding var tab: MeetingSection
+    @State private var jumpTarget: TimeInterval?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -257,15 +354,26 @@ private struct FinishedMeetingBody: View {
                 }
             }
             .pickerStyle(.segmented)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .labelsHidden()
+            .fixedSize()
+            .padding(.bottom, 8)
             .accessibilityLabel("Sección de la reunión")
+
+            Divider()
 
             switch tab {
             case .summary:
-                SummaryView(meeting: meeting)
+                SummaryView(meeting: meeting) { time in
+                    jumpTarget = time
+                    tab = .transcript
+                }
             case .transcript:
-                LiveTranscriptView(lines: meeting.lines, volatile: [:])
+                LiveTranscriptView(
+                    lines: meeting.lines,
+                    volatile: [:],
+                    jumpTarget: $jumpTarget,
+                    followsLive: false
+                )
             }
         }
     }
@@ -277,7 +385,7 @@ private struct NotesInspector: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(isLive ? "Notas en vivo" : "Agenda y notas")
+            Label(isLive ? "Notas en vivo" : "Agenda y notas", systemImage: "square.and.pencil")
                 .font(.headline)
             Text(isLive
                  ? "Escribe contexto o la agenda. El modelo lo tendrá en cuenta."
@@ -286,8 +394,18 @@ private struct NotesInspector: View {
                 .foregroundStyle(.secondary)
             TextEditor(text: $text)
                 .font(.body)
+                .lineSpacing(3)
                 .scrollContentBackground(.hidden)
                 .paperCard()
+                .overlay(alignment: .topLeading) {
+                    if text.isEmpty {
+                        Text("Agenda, nombres, contexto…")
+                            .foregroundStyle(.tertiary)
+                            .padding(.horizontal, 13)
+                            .padding(.vertical, 8)
+                            .allowsHitTesting(false)
+                    }
+                }
         }
         .padding(16)
     }

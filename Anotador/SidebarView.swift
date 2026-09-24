@@ -79,30 +79,34 @@ struct MeetingRow: View {
     let meeting: Meeting
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
+        VStack(alignment: .leading, spacing: 3) {
+            HStack(spacing: 6) {
+                if meeting.phase.isLive {
+                    Image(systemName: "record.circle.fill")
+                        .foregroundStyle(Palette.rec)
+                        .symbolEffect(.pulse)
+                        .accessibilityHidden(true)
+                }
                 Text(meeting.title)
                     .font(.headline)
                     .lineLimit(1)
-                Spacer()
-                if meeting.phase.isLive {
-                    Circle()
-                        .fill(meeting.phase.color)
-                        .frame(width: 8, height: 8)
-                        .accessibilityHidden(true)
-                }
             }
-            HStack(spacing: 8) {
+            HStack(spacing: 5) {
                 Text(meeting.createdAt.formatted(date: .omitted, time: .shortened))
-                if meeting.duration > 0 {
-                    Text(meeting.formattedDuration)
+                if meeting.duration > 0, !meeting.phase.isLive {
+                    Text("·")
+                    Text(meeting.durationDescription)
                 }
-                Text(meeting.phase.name)
+                if meeting.phase != .ready, meeting.phase != .draft {
+                    Text("·")
+                    PhaseChip(phase: meeting.phase)
+                }
             }
             .font(.caption)
             .foregroundStyle(.secondary)
+            .lineLimit(1)
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, 3)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityDescription)
         .accessibilityAddTraits(meeting.phase.isLive ? .updatesFrequently : [])
@@ -111,7 +115,7 @@ struct MeetingRow: View {
     private var accessibilityDescription: String {
         var parts = [meeting.title, meeting.phase.name]
         if meeting.duration > 0 {
-            parts.append(meeting.formattedDuration)
+            parts.append(meeting.durationDescription)
         }
         return parts.joined(separator: ", ")
     }

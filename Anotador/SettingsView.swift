@@ -67,7 +67,7 @@ private struct GeneralSettingsView: View {
     }
 }
 
-private struct ProviderSettingsView: View {
+struct ProviderSettingsView: View {
     @AppStorage(ProviderSettings.providerKey) private var providerRaw = AIProvider.grokCLI.rawValue
 
     private var provider: AIProvider {
@@ -77,21 +77,7 @@ private struct ProviderSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Picker("Proveedor", selection: $providerRaw) {
-                    Section("Suscripción") {
-                        Text(AIProvider.grokCLI.name).tag(AIProvider.grokCLI.rawValue)
-                    }
-                    Section("API key (pago por uso)") {
-                        ForEach([AIProvider.openAI, .xAI, .anthropic]) { item in
-                            Text(item.name).tag(item.rawValue)
-                        }
-                    }
-                    Section("Local") {
-                        ForEach([AIProvider.ollama, .lmStudio, .openAICompatible]) { item in
-                            Text(item.name).tag(item.rawValue)
-                        }
-                    }
-                }
+                ProviderPicker(selection: $providerRaw)
             } footer: {
                 Text(provider.privacyNote)
                     .foregroundStyle(.secondary)
@@ -104,8 +90,24 @@ private struct ProviderSettingsView: View {
     }
 }
 
+struct ProviderPicker: View {
+    @Binding var selection: String
+
+    var body: some View {
+        Picker("Proveedor", selection: $selection) {
+            ForEach(AIProvider.Group.allCases) { group in
+                Section(group.title) {
+                    ForEach(group.providers) { item in
+                        Text(item.name).tag(item.rawValue)
+                    }
+                }
+            }
+        }
+    }
+}
+
 /// Recreated per provider (`.id`) so each keeps its own model, URL and key.
-private struct ProviderDetailSection: View {
+struct ProviderDetailSection: View {
     let provider: AIProvider
     @AppStorage private var model: String
     @AppStorage private var baseURL: String

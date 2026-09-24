@@ -60,7 +60,7 @@ struct MeetingMarkdownTests {
         #expect(markdown.contains("Lanzamos el viernes."))
         #expect(markdown.contains("- Fecha firme (04:10)"))
         #expect(markdown.contains("> el viernes"))
-        #expect(markdown.contains("- Cerrar copy — Ana · jueves"))
+        #expect(markdown.contains("- [ ] Cerrar copy — Ana · jueves"))
         #expect(markdown.contains("¿Quién revisa legal?"))
     }
 }

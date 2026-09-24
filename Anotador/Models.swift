@@ -36,6 +36,20 @@ struct TranscriptLine: Identifiable, Codable, Hashable, Sendable {
         }
         return String(format: "%02d:%02d", minutes, seconds)
     }
+
+    /// Inverse of `clock`: "04:10" or "1:02:03" → seconds. Tolerates "[04:10]".
+    static func parseClock(_ text: String) -> TimeInterval? {
+        let cleaned = text.trimmingCharacters(in: CharacterSet(charactersIn: "[]() ").union(.whitespaces))
+        let parts = cleaned.split(separator: ":").map { Int($0) }
+        guard (2...3).contains(parts.count), parts.allSatisfy({ $0 != nil && $0! >= 0 }) else { return nil }
+        return TimeInterval(parts.reduce(0) { $0 * 60 + $1! })
+    }
+
+    /// Index of the line closest to (and not after) `time`.
+    static func index(nearest time: TimeInterval, in lines: [TranscriptLine]) -> Int? {
+        guard !lines.isEmpty else { return nil }
+        return lines.lastIndex { $0.startedAt <= time + 0.5 } ?? 0
+    }
 }
 
 struct KeyPoint: Codable, Hashable, Identifiable, Sendable {
@@ -69,16 +83,19 @@ struct ActionItem: Codable, Hashable, Identifiable, Sendable {
     var task: String
     var owner: String?
     var due: String?
+    /// Ticked by the user in the summary; never produced by the model.
+    var done: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, task, owner, due
+        case id, task, owner, due, done
     }
 
-    init(id: UUID = UUID(), task: String, owner: String? = nil, due: String? = nil) {
+    init(id: UUID = UUID(), task: String, owner: String? = nil, due: String? = nil, done: Bool = false) {
         self.id = id
         self.task = task
         self.owner = owner
         self.due = due
+        self.done = done
     }
 
     init(from decoder: Decoder) throws {
@@ -87,6 +104,7 @@ struct ActionItem: Codable, Hashable, Identifiable, Sendable {
         task = try container.decode(String.self, forKey: .task)
         owner = try container.decodeIfPresent(String.self, forKey: .owner)
         due = try container.decodeIfPresent(String.self, forKey: .due)
+        done = try container.decodeIfPresent(Bool.self, forKey: .done) ?? false
     }
 }
 
@@ -251,6 +269,12 @@ final class Meeting {
 
     var formattedDuration: String {
         TranscriptLine.clock(duration)
+    }
+
+    /// "45 min", "1 h 12 min", "30 s": readable where "16:29" is ambiguous.
+    var durationDescription: String {
+        let units: Set<Duration.UnitsFormatStyle.Unit> = duration >= 60 ? [.hours, .minutes] : [.seconds]
+        return Duration.seconds(duration.rounded()).formatted(.units(allowed: units, width: .abbreviated))
     }
 }
 

@@ -55,6 +55,48 @@ enum AIProvider: String, CaseIterable, Identifiable, Codable, Sendable {
         case ollama
     }
 
+    enum Group: CaseIterable, Identifiable {
+        case subscription, apiKey, local
+
+        var id: Self { self }
+
+        var title: String {
+            switch self {
+            case .subscription: "Suscripción"
+            case .apiKey: "API key (pago por uso)"
+            case .local: "Local"
+            }
+        }
+
+        var subtitle: String {
+            switch self {
+            case .subscription: "Usa la cuenta que ya pagas. Sin claves."
+            case .apiKey: "Pagas solo lo que usas con tu propia clave."
+            case .local: "Gratis y privado. El modelo corre en tu Mac."
+            }
+        }
+
+        var systemImage: String {
+            switch self {
+            case .subscription: "person.crop.circle.badge.checkmark"
+            case .apiKey: "key.horizontal"
+            case .local: "desktopcomputer"
+            }
+        }
+
+        var providers: [AIProvider] {
+            switch self {
+            case .subscription: [.grokCLI]
+            case .apiKey: [.openAI, .xAI, .anthropic]
+            case .local: [.ollama, .lmStudio, .openAICompatible]
+            }
+        }
+    }
+
+    var group: Group {
+        Group.allCases.first { $0.providers.contains(self) } ?? .apiKey
+    }
+
     var isLocal: Bool {
         self == .ollama || self == .lmStudio
     }

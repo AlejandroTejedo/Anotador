@@ -85,7 +85,7 @@ extension TranscriptLine {
 
 extension ActionItem {
     var markdownLine: String {
-        var line = "- \(task)"
+        var line = "- [\(done ? "x" : " ")] \(task)"
         if let owner, !owner.isEmpty { line += " — \(owner)" }
         if let due, !due.isEmpty { line += " · \(due)" }
         return line

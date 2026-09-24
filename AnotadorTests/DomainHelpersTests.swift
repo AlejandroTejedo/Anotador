@@ -49,8 +49,8 @@ struct DomainHelpersTests {
 
     @Test func actionItemMarkdownIncludesOwnerAndDue() {
         let full = ActionItem(task: "Enviar acta", owner: "Eva", due: "mañana")
-        #expect(full.markdownLine == "- Enviar acta — Eva · mañana")
+        #expect(full.markdownLine == "- [ ] Enviar acta — Eva · mañana")
         let bare = ActionItem(task: "Revisar")
-        #expect(bare.markdownLine == "- Revisar")
+        #expect(bare.markdownLine == "- [ ] Revisar")
     }
 }

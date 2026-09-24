@@ -6,11 +6,25 @@ struct AnotadorApp: App {
     @State private var appModel = AppModel()
     private let container = try! ModelContainer(for: Meeting.self)
 
+    /// `-forceAppearance light|dark` for screenshots and design review (DEBUG only).
+    private static var forcedColorScheme: ColorScheme? {
+        #if DEBUG
+        switch UserDefaults.standard.string(forKey: "forceAppearance") {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil
+        }
+        #else
+        return nil
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup("Anotador", id: "main") {
             ContentView()
                 .environment(appModel)
                 .tint(Palette.terracotta)
+                .preferredColorScheme(Self.forcedColorScheme)
         }
         .defaultSize(width: 1180, height: 760)
         .defaultPosition(.center)
@@ -20,6 +34,7 @@ struct AnotadorApp: App {
         .commands {
             InspectorCommands()
             MeetingCommands()
+            HelpCommands()
         }
 
         MenuBarExtra("Anotador", systemImage: appModel.isRecording ? "record.circle" : "waveform") {
@@ -49,6 +64,16 @@ struct AnotadorSceneActions {
 
 extension FocusedValues {
     @Entry var anotadorActions: AnotadorSceneActions?
+}
+
+private struct HelpCommands: Commands {
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
+
+    var body: some Commands {
+        CommandGroup(before: .help) {
+            Button("Guía de bienvenida") { hasOnboarded = false }
+        }
+    }
 }
 
 private struct MeetingCommands: Commands {

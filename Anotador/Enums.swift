@@ -16,8 +16,8 @@ enum SpeakerLane: String, Codable, CaseIterable, Identifiable, Sendable {
 
     var color: Color {
         switch self {
-        case .you: Color(red: 0.78, green: 0.34, blue: 0.22)
-        case .others: Color(red: 0.25, green: 0.45, blue: 0.62)
+        case .you: Palette.terracotta
+        case .others: Palette.question
         }
     }
 
@@ -53,8 +53,8 @@ enum MeetingPhase: String, Codable, CaseIterable, Sendable {
         case .draft: .secondary
         case .recording: Palette.rec
         case .processing, .summarizing: Palette.terracotta
-        case .ready: Color(red: 0.22, green: 0.55, blue: 0.40)
-        case .failed: .yellow
+        case .ready: Palette.success
+        case .failed: Palette.warning
         }
     }
 
@@ -126,6 +126,13 @@ enum CaptureMode: String, CaseIterable, Identifiable {
     }
 
     var capturesSystemAudio: Bool { self == .meeting }
+
+    var systemImage: String {
+        switch self {
+        case .meeting: "video"
+        case .inPerson: "person.2"
+        }
+    }
 }
 
 enum MeetingSection: String, CaseIterable, Identifiable {

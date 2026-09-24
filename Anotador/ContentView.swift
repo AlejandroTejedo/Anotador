@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var search = ""
     @AppStorage("defaultLocale") private var defaultLocale = Locale.current.identifier
     @AppStorage("defaultStyle") private var defaultStyle = SummaryStyle.auto.rawValue
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
 
     private var filtered: [Meeting] {
         MeetingSearch.matching(meetings, query: search)
@@ -23,8 +24,28 @@ struct ContentView: View {
     }
 
     var body: some View {
+        ZStack {
+            if hasOnboarded {
+                main
+                    .transition(.opacity)
+            } else {
+                OnboardingView {
+                    withAnimation(.easeInOut(duration: 0.4)) { hasOnboarded = true }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.background)
+                .transition(.opacity)
+            }
+        }
+        .frame(minWidth: 900, minHeight: 600)
+        .onAppear {
+            appModel.attach(context: modelContext)
+        }
+    }
+
+    private var main: some View {
         @Bindable var appModel = appModel
-        NavigationSplitView {
+        return NavigationSplitView {
             SidebarView(
                 groups: groups,
                 selectedID: $selectedID,
@@ -42,9 +63,7 @@ struct ContentView: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .frame(minWidth: 900, minHeight: 560)
         .onAppear {
-            appModel.attach(context: modelContext)
             if selectedID == nil {
                 selectedID = meetings.first?.id
             }
