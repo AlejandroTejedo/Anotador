@@ -32,7 +32,7 @@ Pon tu Team ID y un prefijo de bundle propio. `Config/Local.xcconfig` está en `
 xcodebuild test -scheme Anotador -destination 'platform=macOS'
 ```
 
-Cubren la lógica sin permisos: markdown, prompts, decodificación de las respuestas, proveedores, procesos, layout y traducciones. La captura real (micrófono y pantalla) hay que probarla a mano.
+Se ejecutan siempre en español (lo fija el *scheme*), así que dan lo mismo con el Mac en cualquier idioma; `LocalizationTests` comprueba el inglés aparte. Cubren la lógica sin permisos: markdown, prompts, decodificación de las respuestas, proveedores, procesos, layout y traducciones. La captura real (micrófono y pantalla) hay que probarla a mano.
 
 La integración continua (`.github/workflows/ci.yml`) ejecuta lo mismo en cada PR.
 
